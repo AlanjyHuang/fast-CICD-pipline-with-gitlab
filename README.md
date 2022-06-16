@@ -72,7 +72,7 @@
         - $GCE_LOGIN_USER : GCE login user
         - $SSH_PRIVATE_KEY_GCE : ssh privte key from GCE
         - $DOCKER_REGISTRY_TOKEN: the token used to login GitLab Docker Registry
-        ![圖片](https://i.imgur.com/LK930pd.png)
+        - ![圖片](https://i.imgur.com/LK930pd.png)
     + How can you find your $DOCKER_REGISTRY_TOKEN?
         - Go to `User Settings` -> `Access Token`
         - Enter your token name, set expiration date and select permission level scope
@@ -86,10 +86,10 @@ run Gitlab pipeline
     ![圖片](https://user-images.githubusercontent.com/52521773/174021206-fefd2efd-f3e7-4eb8-be4a-8c4473f68317.png)
 + if succss you will be able to access your frontend or backend with your ``GCE PUBLIC IP:PORT``
 + success frontend example<br>
-    - Enter url: http://<your server ip>:80
+    - Enter url: http://`(your server ip)`:80
     ![圖片](https://user-images.githubusercontent.com/52521773/174021909-0d916606-1d7f-4890-8fbe-5651c0310d75.png)
 + success backend example<br>
-    - Enter url: http://<your server ip>:3000
+    - Enter url: http://`(your server ip)`:3000
     ![圖片](https://user-images.githubusercontent.com/52521773/174021964-dcc251da-f893-4b3c-be69-ad67dff4497b.png)
 
 ## Job Assignment
