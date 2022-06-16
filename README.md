@@ -56,14 +56,14 @@
       + allow outer user to access GCE through firewall<br>
       ![圖片](https://user-images.githubusercontent.com/52521773/174018109-d75deb5a-544e-4808-af24-eebaf46d7ff5.png)
       ![圖片](https://user-images.githubusercontent.com/52521773/174018596-5c944536-3fcf-4556-8e06-90631045de03.png)
-      + put clear-docker.sh in your GCE
+      + Important! put `clear-docker.sh` in your GCE
   4. ( test your docker file ) This step is not necessary, we have already made the Dockerfile 
-    + test frontend with docker <br>
-     ``` docker build -t frontend-example . ```
-     ``` docker run -d --name frontend-example -p 80:80 frontend-example ```
-    + test backend with docker <br>
-     ``` docker build -t backend-example . ```
-     ``` docker run -d --name backend-example -p 3000:3000 frontend-example ```   (localhost port:container port)
+      + test frontend with docker <br>
+        ``` docker build -t frontend-example . ```
+        ``` docker run -d --name frontend-example -p 80:80 frontend-example ```
+      + test backend with docker <br>
+        ``` docker build -t backend-example . ```
+        ``` docker run -d --name backend-example -p 3000:3000 frontend-example ```   (localhost port:container port)
   5. before running GitLab
     + add four varible 
         - $DOCKER_REGISTRY_TOKEN : 登入Gitlab Docker Registry 所使用的 Token<br>
@@ -82,14 +82,14 @@
  
 ## Usage
 run Gitlab pipeline
-    + run pipeline (frontend and backend)<br>
++ run pipeline (frontend and backend)<br>
     ![圖片](https://user-images.githubusercontent.com/52521773/174021206-fefd2efd-f3e7-4eb8-be4a-8c4473f68317.png)
-    + if succss you will be able to access your frontend or backend with your ``GCE PUBLIC IP:PORT``
-    + success frontend example<br>
-      - Enter url: http://<your server ip>:80
++ if succss you will be able to access your frontend or backend with your ``GCE PUBLIC IP:PORT``
++ success frontend example<br>
+    - Enter url: http://<your server ip>:80
     ![圖片](https://user-images.githubusercontent.com/52521773/174021909-0d916606-1d7f-4890-8fbe-5651c0310d75.png)
-    + success backend example<br>
-      - Enter url: http://<your server ip>:3000
++ success backend example<br>
+    - Enter url: http://<your server ip>:3000
     ![圖片](https://user-images.githubusercontent.com/52521773/174021964-dcc251da-f893-4b3c-be69-ad67dff4497b.png)
 
 ## Job Assignment
