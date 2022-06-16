@@ -65,19 +65,17 @@
         ``` docker build -t backend-example . ```
         ``` docker run -d --name backend-example -p 3000:3000 frontend-example ```   (localhost port:container port)
   5. before running GitLab
-    + add four varible 
-        - $DOCKER_REGISTRY_TOKEN : 登入Gitlab Docker Registry 所使用的 Token<br>
-        [how to access gitLab with token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html)
+      + add four varible 
         - $GCP_VM_HOST : GCE server ip (public ip)
         - $GCE_LOGIN_USER : GCE login user
         - $SSH_PRIVATE_KEY_GCE : ssh privte key from GCE
         - $DOCKER_REGISTRY_TOKEN: the token used to login GitLab Docker Registry
         - ![圖片](https://i.imgur.com/LK930pd.png)
-    + How can you find your $DOCKER_REGISTRY_TOKEN?
+      + How can you find your $DOCKER_REGISTRY_TOKEN?
         - Go to `User Settings` -> `Access Token`
         - Enter your token name, set expiration date and select permission level scope
         - Then it will generate new token. Copy it!
-        ![圖片](https://i.imgur.com/eBDIGfI.png)
+        - ![圖片](https://i.imgur.com/eBDIGfI.png)
 
  
 ## Usage
