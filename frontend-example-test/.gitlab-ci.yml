@@ -1,0 +1,74 @@
+stages:
+  - build
+  - test
+  - docker
+  - deploy
+
+variables:
+
+###################
+### Build stage ###
+###################
+frontend-build:
+  stage: build
+  image: node:alpine
+  script:
+    - echo "Start building frontend"
+    - npm install
+    - CI=false npm run build
+    - echo "Build frontend successfully!"
+  cache:
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+      - build/
+      - node_modules/
+
+
+##################
+### Test stage ###
+##################
+frontend-test:
+  stage: test
+  image: node:alpine
+  script:
+    - echo "Start testing frontend"
+    - npm run test
+    - echo "Test frontend successfully!"
+
+
+####################
+### Docker stage ###
+####################
+frontend-docker:
+  stage: docker
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - echo "Start building docker"
+    - docker login -u $CI_REGISTRY_USER -p $DOCKER_REGISTRY_TOKEN $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+    - echo "Building docker successfully!"
+
+
+####################
+### Deploy stage ###
+####################
+frontend-deploy:
+  stage: deploy
+  image: gitlab/dind:latest
+  before_script:
+    - "which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )"
+    - eval $(ssh-agent -s)
+    - echo "$SSH_KEY_PRIVATE_GCE" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - 'echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ssh ${GCE_LOGIN_USER}@${GCP_VM_HOST} "docker images && docker ps -a"
+    - ssh ${GCE_LOGIN_USER}@${GCP_VM_HOST} "bash ~/clear-docker.sh frontend-example $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
+    - ssh ${GCE_LOGIN_USER}@${GCP_VM_HOST} "docker run -d --name frontend-example -p 80:80 $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
+
