@@ -1,0 +1,5 @@
+git-all
+nodejs
+nodejs-legacy
+npm
+docker.io
