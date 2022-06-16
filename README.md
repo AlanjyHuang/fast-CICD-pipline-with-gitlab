@@ -57,7 +57,7 @@
       ![圖片](https://user-images.githubusercontent.com/52521773/174018109-d75deb5a-544e-4808-af24-eebaf46d7ff5.png)
       ![圖片](https://user-images.githubusercontent.com/52521773/174018596-5c944536-3fcf-4556-8e06-90631045de03.png)
       + put clear-docker.sh in your GCE
-  4.( test your docker file ) This step is not necessary, we have already made the Dockerfile 
+  4. ( test your docker file ) This step is not necessary, we have already made the Dockerfile 
     + test frontend with docker <br>
      ``` docker build -t frontend-example . ```
      ``` docker run -d --name frontend-example -p 80:80 frontend-example ```
